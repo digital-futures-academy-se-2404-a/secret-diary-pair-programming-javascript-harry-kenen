@@ -1,4 +1,4 @@
-import Diary from '../src/Diary';
+import Diary from '../src/Diary.js';
 
 describe('Diary entry tests:', () => {
 
