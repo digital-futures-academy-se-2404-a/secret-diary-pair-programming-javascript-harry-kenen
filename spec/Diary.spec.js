@@ -41,15 +41,21 @@ describe("Diary tests:", () => {
   })
 
   describe('Diary lock tests:', () => {
-    
     it("should prevent the user from viewing the entries if locked and they have not provided a password", () => {
+      testDiary.lock();
 
-      testDiary.lock()
+      expect(testDiary.getEntries()).toBeFalse();
+    });
 
-      expect(testDiary.getEntries()).toBeFalse()
+    it("should get the entries when the diary is locked and they input the correct password to unlock it.", () => {
+      const testEntry = "Hello, World!";
 
+      testDiary.lock();
 
+      testDiary.unlock(1234);
+      testDiary.addEntry(testEntry);
+      
+      expect(testDiary.getEntries()).toContain(testEntry);
     })
-
   });
 });

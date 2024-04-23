@@ -24,4 +24,10 @@ export default class Diary {
   lock() {
     this.#isLocked = true;
   }
+
+  unlock(password) {
+    if (password === 1234) {
+      this.#isLocked = false
+    }
+  }
 }
