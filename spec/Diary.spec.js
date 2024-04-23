@@ -7,6 +7,10 @@ describe("Diary tests:", () => {
     testDiary = new Diary();
   });
 
+  afterEach(() => {
+    testDiary = undefined;
+  })
+
   describe('Diary entry tests:', () => {
     it("should store text inputs provided by the user", () => {
       const testEntry = "Hello, World!";

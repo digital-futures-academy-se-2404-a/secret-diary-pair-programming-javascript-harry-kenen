@@ -1,12 +1,17 @@
 export default class Diary {
   #entries = new Array();
+  #isLocked = false;
 
   addEntry(entry) {
     this.#entries.push(entry);
   }
 
   getEntries() {
-    return this.#entries;
+    if (!this.#isLocked) {
+      return this.#entries;
+    } else {
+      return false;
+    } 
   }
 
   printEntries() {
@@ -14,5 +19,9 @@ export default class Diary {
       console.log(`ENTRY #${i + 1}: Dear Diary, `);
       console.log(entry);
     })
+  }
+
+  lock() {
+    this.#isLocked = true;
   }
 }
