@@ -1,6 +1,9 @@
+import * as readline from 'readline';
+
 export default class Diary {
   #entries = new Array();
   #isLocked = false;
+  #password = 1234;
 
   addEntry(entry) {
     this.#entries.push(entry);
@@ -26,8 +29,24 @@ export default class Diary {
   }
 
   unlock(password) {
-    if (password === 1234) {
+    if (password === this.#password) {
       this.#isLocked = false
     }
+  }
+
+  isLocked() {
+    return this.#isLocked;
+  }
+
+  requestPasswordInput() {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    rl.question("Set a password for your diary: ", (newPassword) => {
+      this.#password = newPassword;
+      rl.close();
+    });
   }
 }
